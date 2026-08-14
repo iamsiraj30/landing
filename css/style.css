@@ -1,0 +1,494 @@
+/* ==========================================================================
+   NovaFlow AI - Single App Landing Page Stylesheet
+   Built with Bootstrap 5.3 CDN + Custom Modern Glassmorphism Design Tokens
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design System & CSS Variables
+   -------------------------------------------------------------------------- */
+:root {
+  --bg-dark: #080b12;
+  --bg-card: rgba(17, 24, 39, 0.65);
+  --bg-card-hover: rgba(24, 34, 53, 0.85);
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --border-glass-hover: rgba(0, 242, 254, 0.3);
+  
+  --primary-cyan: #00f2fe;
+  --primary-blue: #4facfe;
+  --accent-purple: #a855f7;
+  --accent-pink: #ec4899;
+
+  --grad-cyan-blue: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  --grad-purple-pink: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  --grad-dark-card: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  --shadow-glow-cyan: 0 10px 30px -10px rgba(0, 242, 254, 0.35);
+  --shadow-glow-purple: 0 10px 30px -10px rgba(168, 85, 247, 0.35);
+  --shadow-glass: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   2. General Reset & Typography
+   -------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+a {
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+/* --------------------------------------------------------------------------
+   3. Custom Gradient & Glass Utility Classes
+   -------------------------------------------------------------------------- */
+.text-gradient-cyan {
+  background: var(--grad-cyan-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-purple {
+  background: var(--grad-purple-pink);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-glass-hover);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-glass);
+}
+
+.glass-nav {
+  background: rgba(8, 11, 18, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: var(--transition-fast);
+}
+
+/* Glowing Ambient Orbs */
+.bg-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+}
+
+.orb-cyan {
+  width: 450px;
+  height: 450px;
+  background: rgba(0, 242, 254, 0.25);
+  top: -100px;
+  left: 10%;
+}
+
+.orb-purple {
+  width: 500px;
+  height: 500px;
+  background: rgba(168, 85, 247, 0.22);
+  top: 400px;
+  right: 5%;
+}
+
+/* --------------------------------------------------------------------------
+   4. Buttons & Badges
+   -------------------------------------------------------------------------- */
+.btn-glow-primary {
+  background: var(--grad-cyan-blue);
+  color: #040914 !important;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 12px;
+  border: none;
+  transition: var(--transition-fast);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.btn-glow-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px -5px rgba(0, 242, 254, 0.5);
+  color: #000 !important;
+}
+
+.btn-glass-outline {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-main) !important;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 12px;
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(8px);
+  transition: var(--transition-fast);
+}
+
+.btn-glass-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+.badge-pill-glow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(0, 242, 254, 0.08);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  border-radius: 50px;
+  color: var(--primary-cyan);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.badge-pill-glow i {
+  font-size: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   5. Navbar & Navigation
+   -------------------------------------------------------------------------- */
+.navbar-brand {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--text-main) !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--grad-cyan-blue);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #080b12;
+  font-size: 1.1rem;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+}
+
+.nav-link {
+  color: var(--text-muted) !important;
+  font-weight: 500;
+  padding: 8px 16px !important;
+  transition: var(--transition-fast);
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--primary-cyan) !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Hero Section
+   -------------------------------------------------------------------------- */
+.hero-section {
+  position: relative;
+  padding-top: 140px;
+  padding-bottom: 80px;
+  z-index: 1;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  max-width: 620px;
+  margin: 0 auto 30px auto;
+}
+
+.hero-mockup-wrapper {
+  position: relative;
+  margin-top: 50px;
+}
+
+.hero-mockup-card {
+  padding: 12px;
+  background: rgba(18, 25, 40, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 242, 254, 0.15);
+  overflow: hidden;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-mockup-img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   7. Social Proof Logos
+   -------------------------------------------------------------------------- */
+.brand-logo-item {
+  color: var(--text-dim);
+  font-weight: 700;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.6;
+  transition: var(--transition-fast);
+}
+
+.brand-logo-item:hover {
+  opacity: 1;
+  color: var(--text-main);
+}
+
+/* --------------------------------------------------------------------------
+   8. Feature Cards & Icon Boxes
+   -------------------------------------------------------------------------- */
+.feature-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(0, 242, 254, 0.1);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  color: var(--primary-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  transition: var(--transition-fast);
+}
+
+.glass-card:hover .feature-icon-wrapper {
+  background: var(--grad-cyan-blue);
+  color: #080b12;
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+/* --------------------------------------------------------------------------
+   9. Showcase Tabs
+   -------------------------------------------------------------------------- */
+.nav-pills-custom {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  padding: 6px;
+  border-radius: 16px;
+  display: inline-flex;
+}
+
+.nav-pills-custom .nav-link {
+  border-radius: 12px;
+  color: var(--text-muted) !important;
+  font-weight: 600;
+  padding: 10px 24px !important;
+}
+
+.nav-pills-custom .nav-link.active {
+  background: var(--grad-cyan-blue);
+  color: #080b12 !important;
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+/* --------------------------------------------------------------------------
+   10. How It Works Steps
+   -------------------------------------------------------------------------- */
+.step-number {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  color: var(--accent-purple);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   11. Pricing Switch & Cards
+   -------------------------------------------------------------------------- */
+.pricing-card-featured {
+  background: rgba(22, 32, 54, 0.9);
+  border: 2px solid var(--primary-cyan);
+  box-shadow: var(--shadow-glow-cyan);
+  position: relative;
+}
+
+.popular-badge {
+  position: absolute;
+  top: -14px;
+  right: 24px;
+  background: var(--grad-cyan-blue);
+  color: #080b12;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pricing-price {
+  font-size: 2.8rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+}
+
+.switch-toggle {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+}
+
+.switch-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider-round {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-glass);
+  transition: .3s;
+  border-radius: 34px;
+}
+
+.slider-round:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider-round {
+  background: var(--grad-cyan-blue);
+}
+
+input:checked + .slider-round:before {
+  transform: translateX(24px);
+  background-color: #080b12;
+}
+
+/* --------------------------------------------------------------------------
+   12. FAQ Accordion
+   -------------------------------------------------------------------------- */
+.accordion-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px !important;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.accordion-button {
+  background: transparent;
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 20px;
+  box-shadow: none !important;
+}
+
+.accordion-button:not(.collapsed) {
+  background: rgba(0, 242, 254, 0.05);
+  color: var(--primary-cyan);
+}
+
+.accordion-button::after {
+  filter: invert(1);
+}
+
+.accordion-body {
+  color: var(--text-muted);
+  padding: 0 20px 20px 20px;
+}
+
+/* --------------------------------------------------------------------------
+   13. CTA Banner & Footer
+   -------------------------------------------------------------------------- */
+.cta-box {
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  border-radius: 28px;
+  padding: 60px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-link {
+  color: var(--text-muted);
+  transition: var(--transition-fast);
+}
+
+.footer-link:hover {
+  color: var(--primary-cyan);
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .hero-section {
+    padding-top: 110px;
+  }
+  .cta-box {
+    padding: 40px 20px;
+  }
+}
